@@ -209,5 +209,17 @@ router.post("/collectionProduct",(req,res)=>{
         }
     })
 })
+router.get("/collection",(req,res)=>{
+  let sid = +req.query.sid;
+  console.log(req)
+  // let collectionProduct = req.body.collectionProduct;
+  mysqlConnection.query(`SELECT c_product FROM  member  WHERE m_sid = ${sid}`,
+  (error,rows)=>{
+      if (!error) res.send(rows)
+      
+      else console.log(error)
+      
+  })
+})
 
     module.exports = router
